@@ -247,8 +247,9 @@ function getRectangleString(width, height) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const f = (c) => String.fromCharCode(c.charCodeAt(0) + (c.toUpperCase() <= 'M' ? 13 : -13));
+  return str.replace(/[A-Za-z]/g, f);
 }
 
 /**
@@ -264,8 +265,8 @@ function encodeToRot13(/* str */) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  throw new Error('Not implemented');
+function isString(value) {
+  return Object.prototype.toString.call(value) === '[object String]';
 }
 
 /**
@@ -292,8 +293,28 @@ function isString(/* value */) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  const cards = [
+    'A',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    'J',
+    'Q',
+    'K',
+  ];
+  const suits = ['♣', '♦', '♥', '♠'];
+  const card = value.length > 2 ? value.substring(0, 2) : value.substring(0, 1);
+  const suit = value.replace(card, '');
+  return (
+    cards.findIndex((el) => el === card) + suits.findIndex((el) => el === suit) * 13
+  );
 }
 
 module.exports = {
