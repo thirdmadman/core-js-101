@@ -50,8 +50,7 @@ function getCircleCircumference(radius) {
  *  -3, 3  => 0
  */
 function getAverage(value1, value2) {
-  const result = value1 > value2 ? (value1 - value2) / 2 + value2 : (value2 - value1) / 2 + value1;
-  return result;
+  return value1 / 2 + value2 / 2;
 }
 
 /**
@@ -110,7 +109,7 @@ function getLinearEquationRoot(a, b) {
  *   (0,1) (1,2)     => 0
  */
 function getAngleBetweenVectors(x1, y1, x2, y2) {
-  return Math.atan2(y2 - y1, x2 - x1);
+  return Math.abs(Math.atan2(y2, x2) - Math.atan2(y1, x1));
 }
 
 /**

@@ -36,7 +36,7 @@ function findElement(arr, value) {
  */
 function generateOdds(len) {
   const rewriteToOdd = (el, i) => (i >= 1 ? i * 2 + 1 : 1);
-  return new Array(len).fill(0, 0, len - 1).map(rewriteToOdd);
+  return new Array(len).fill(0, 0, len).map(rewriteToOdd);
 }
 
 /**
