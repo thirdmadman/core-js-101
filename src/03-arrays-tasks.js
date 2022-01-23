@@ -142,9 +142,7 @@ function getStringsLength(arr) {
  *    [ 1, 'b', 'c'], 0, 'x'  => [ 'x', 1, 'b', 'c' ]
  */
 function insertItem(arr, item, index) {
-  const left = arr.slice(0, index);
-  const right = arr.slice(index);
-  return left.concat(item, right);
+  return arr.splice(index, 0, item);
 }
 
 /**
@@ -172,7 +170,7 @@ function getHead(arr, n) {
  *    [ 'a', 'b', 'c', 'd'], 3  => [ 'b', 'c', 'd' ]
  */
 function getTail(arr, n) {
-  return arr.slice(n);
+  return arr.slice(-n);
 }
 
 /**
@@ -524,8 +522,8 @@ function group(/* array, keySelector, valueSelector */) {
  *   [[1, 2], [3, 4], [5, 6]], (x) => x     =>   [ 1, 2, 3, 4, 5, 6 ]
  *   ['one','two','three'], x=>x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
-function selectMany(/* arr, childrenSelector */) {
-  throw new Error('Not implemented');
+function selectMany(arr, childrenSelector) {
+  return arr.map((el) => childrenSelector(el)).flat();
 }
 
 /**
